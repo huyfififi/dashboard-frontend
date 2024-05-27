@@ -10,6 +10,7 @@ import { DailyReportCard } from './DailyReportCard';
 function App() {
   const [codeforcesUserBasicInfo, setCodeforcesUserBasicInfo] = useState(null);
   const [codeforcesUserStatistics, setCodeforcesUserStatistics] = useState(null);
+  const [dailyReportLiCount, setDailyReportLiCount] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +22,14 @@ function App() {
         const codeforcesUserStatisticsResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/statistics/');
         const codeforcesUserStatisticsResponseJson = await codeforcesUserStatisticsResponse.json(); 
         setCodeforcesUserStatistics(codeforcesUserStatisticsResponseJson);
+
+        const dailyReportResponse = await fetch('https://nippo.huyfififi.com/');
+        const htmlString = await dailyReportResponse.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, 'text/html');
+        const liTags = doc.querySelectorAll('li');
+        setDailyReportLiCount(liTags.length)
+
       } catch (error) {
         console.error(error);
       }
@@ -28,7 +37,7 @@ function App() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 60000);  // 60 seconds
+    const interval = setInterval(fetchData, 600000);  // 60 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -49,7 +58,7 @@ function App() {
         </div>
 
         <div className="card-container">
-          <DailyReportCard />
+          <DailyReportCard data={dailyReportLiCount}/>
         </div>
       </div>
     </div>

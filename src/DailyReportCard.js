@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-export function DailyReportCard() {
+export function DailyReportCard({ data }) {
   return (
     <Card sx={{ width: '80vw', maxWidth: '800px' }}>
       <CardContent>
@@ -11,7 +11,7 @@ export function DailyReportCard() {
           Daily Report Count
         </Typography>
         <Typography variant="h2" component="div">
-          45
+          {data ? data : 'N/A'}
         </Typography>
       </CardContent>
     </Card>
