@@ -11,6 +11,7 @@ function App() {
   const [codeforcesUserBasicInfo, setCodeforcesUserBasicInfo] = useState(null);
   const [codeforcesUserStatistics, setCodeforcesUserStatistics] = useState(null);
   const [dailyReportLiCount, setDailyReportLiCount] = useState(null);
+  const [lastRefreshTime, setLastRefreshTime] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,8 @@ function App() {
         const liTags = doc.querySelectorAll('li');
         setDailyReportLiCount(liTags.length)
 
+        setLastRefreshTime(new Date().toLocaleString());
+
       } catch (error) {
         console.error(error);
       }
@@ -37,7 +40,7 @@ function App() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 600000);  // 60 seconds
+    const interval = setInterval(fetchData, 60000);  // 60 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -59,6 +62,10 @@ function App() {
 
         <div className="card-container">
           <DailyReportCard data={dailyReportLiCount}/>
+        </div>
+
+        <div className="timestamp">
+          Last refreshed: {lastRefreshTime ? lastRefreshTime : 'N/A'}
         </div>
       </div>
     </div>

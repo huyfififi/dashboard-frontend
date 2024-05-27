@@ -43,3 +43,8 @@
   justify-content: center;
   margin: 1vh;
 }
+
+.timestamp {
+  font-size: 0.9rem;
+  color: #888;
+}
