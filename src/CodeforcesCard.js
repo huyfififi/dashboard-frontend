@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-export function CodeforcesRatingCard() {
+export function CodeforcesRatingCard({ data }) {
   return (
     <Card sx={{ width: '80vw', maxWidth: '800px' }}>
       <CardContent>
@@ -11,17 +11,17 @@ export function CodeforcesRatingCard() {
           Codeforces Rating
         </Typography>
         <Typography variant="h2" component="div">
-          1038
+          {data ? data.rating : 'N/A'}
         </Typography>
         <Typography variant="body1" color="text.secondary" style={{marginBottom: "0.3rem"}}>
-          (max: 1149)
+          (max rating: {data ? data.max_rating : 'N/A'})
         </Typography>
       </CardContent>
     </Card>
   );
 }
 
-export function CodeforcesParticipatedCard() {
+export function CodeforcesParticipatedCard({ data }) {
   return (
     <Card sx={{ width: '80vw', maxWidth: '800px' }}>
       <CardContent>
@@ -29,14 +29,14 @@ export function CodeforcesParticipatedCard() {
           Codeforces Contests Participated
         </Typography>
         <Typography variant="h2" component="div">
-          14
+          {data ? data.participated_contests_count : 'N/A'}
         </Typography>
       </CardContent>
     </Card>
   );
 }
 
-export function CodeforcesSolvedCard() {
+export function CodeforcesSolvedCard({ data }) {
   return (
     <Card sx={{ width: '80vw', maxWidth: '800px' }}>
       <CardContent>
@@ -44,7 +44,10 @@ export function CodeforcesSolvedCard() {
           Codeforces Problems Solved
         </Typography>
         <Typography variant="h2" component="div">
-          234
+          {data ? data.solved_count: 'N/A'}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" style={{marginBottom: "0.3rem"}}>
+          (total submission: {data ? data.total_count : 'N/A'})
         </Typography>
       </CardContent>
     </Card>

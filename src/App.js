@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {
   CodeforcesParticipatedCard,
@@ -7,19 +8,44 @@ import {
 import { DailyReportCard } from './DailyReportCard';
 
 function App() {
+  const [codeforcesUserBasicInfo, setCodeforcesUserBasicInfo] = useState(null);
+  const [codeforcesUserStatistics, setCodeforcesUserStatistics] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const codeforcesUserBasicInfoResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/info/');
+        const codeforcesUserBasicInfoResponseJson = await codeforcesUserBasicInfoResponse.json();
+        setCodeforcesUserBasicInfo(codeforcesUserBasicInfoResponseJson);
+
+        const codeforcesUserStatisticsResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/statistics/');
+        const codeforcesUserStatisticsResponseJson = await codeforcesUserStatisticsResponse.json(); 
+        setCodeforcesUserStatistics(codeforcesUserStatisticsResponseJson);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+
+    const interval = setInterval(fetchData, 60000);  // 60 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="App">
       <div className="App-content">
 	      <div className="card-container">
-	        <CodeforcesRatingCard />
+	        <CodeforcesRatingCard data={codeforcesUserBasicInfo}/>
 	      </div>
 
         <div className="card-container">
-          <CodeforcesParticipatedCard />
+          <CodeforcesParticipatedCard data={codeforcesUserBasicInfo}/>
         </div>
 
         <div className="card-container">
-          <CodeforcesSolvedCard />
+          <CodeforcesSolvedCard data={codeforcesUserStatistics}/>
         </div>
 
         <div className="card-container">
