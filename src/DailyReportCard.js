@@ -13,9 +13,6 @@ export function DailyReportCard() {
         <Typography variant="h2" component="div">
           45
         </Typography>
-        <Typography variant="caption" color="text.secondary">
-          last updated: 12:27 12/09/2021
-        </Typography>
       </CardContent>
     </Card>
   );

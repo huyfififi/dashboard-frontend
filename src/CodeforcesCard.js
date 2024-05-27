@@ -16,9 +16,6 @@ export function CodeforcesRatingCard() {
         <Typography variant="body1" color="text.secondary" style={{marginBottom: "0.3rem"}}>
           (max: 1149)
         </Typography>
-        <Typography variant="caption" color="text.secondary">
-          last updated: 12:27 12/09/2021
-        </Typography>
       </CardContent>
     </Card>
   );
@@ -34,9 +31,6 @@ export function CodeforcesParticipatedCard() {
         <Typography variant="h2" component="div">
           14
         </Typography>
-        <Typography variant="caption" color="text.secondary">
-          last updated: 12:27 12/09/2021
-        </Typography>
       </CardContent>
     </Card>
   );
@@ -51,9 +45,6 @@ export function CodeforcesSolvedCard() {
         </Typography>
         <Typography variant="h2" component="div">
           234
-        </Typography>
-        <Typography variant="caption" color="text.secondary">
-          last updated: 12:27 12/09/2021
         </Typography>
       </CardContent>
     </Card>
