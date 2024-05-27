@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  CodeforcesParticipatedCard,
+  CodeforcesRatingCard,
+  CodeforcesSolvedCard,
+} from './CodeforcesCard';
+import { DailyReportCard } from './DailyReportCard';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-content">
+	      <div className="card-container">
+	        <CodeforcesRatingCard />
+	      </div>
+
+        <div className="card-container">
+          <CodeforcesParticipatedCard />
+        </div>
+
+        <div className="card-container">
+          <CodeforcesSolvedCard />
+        </div>
+
+        <div className="card-container">
+          <DailyReportCard />
+        </div>
+      </div>
     </div>
   );
 }
