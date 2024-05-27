@@ -19,11 +19,19 @@ function App() {
         const codeforcesUserBasicInfoResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/info/');
         const codeforcesUserBasicInfoResponseJson = await codeforcesUserBasicInfoResponse.json();
         setCodeforcesUserBasicInfo(codeforcesUserBasicInfoResponseJson);
+      } catch (error) {
+        console.error(error);
+      }
 
+      try {
         const codeforcesUserStatisticsResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/statistics/');
         const codeforcesUserStatisticsResponseJson = await codeforcesUserStatisticsResponse.json(); 
         setCodeforcesUserStatistics(codeforcesUserStatisticsResponseJson);
+      } catch (error) {
+        console.error(error);
+      }
 
+      try {
         const dailyReportResponse = await fetch('https://nippo.huyfififi.com/');
         const htmlString = await dailyReportResponse.text();
         const parser = new DOMParser();
