@@ -14,6 +14,7 @@ function App() {
   const [lastRefreshTime, setLastRefreshTime] = useState(null);
 
   useEffect(() => {
+    document.title = "Dashboard";
     const fetchData = async () => {
       try {
         const codeforcesUserBasicInfoResponse = await fetch('http://localhost:8000/api/v1/codeforces/user/info/');
