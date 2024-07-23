@@ -47,7 +47,10 @@ export function CodeforcesSolvedCard({ data }) {
           {data ? data.solved_count: 'N/A'}
         </Typography>
         <Typography variant="body1" color="text.secondary" style={{marginBottom: "0.3rem"}}>
-          (total submission: {data ? data.total_count : 'N/A'})
+          <div>&#91;800,1000&#41;: {data ? data["-1000"] : 'N/A'}</div>
+          <div>&#91;1000,1199&#41;: {data ? data["1000-1200"] : 'N/A'}</div>
+          <div>&#91;1200,1400&#41;: {data ? data["1200-1400"] : 'N/A'}</div>
+          <div>total submission: {data ? data.total_count : 'N/A'}</div>
         </Typography>
       </CardContent>
     </Card>
